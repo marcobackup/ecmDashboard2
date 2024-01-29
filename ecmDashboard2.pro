@@ -6,6 +6,8 @@ QT += serialport
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        core/controller/alert.cpp \
+        core/alertqueue.cpp \
         core/controller.cpp \
         core/uarthandler.cpp \
         core/can/deserializer.cpp \
@@ -32,7 +34,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    core/controller/alert.h \
+    core/alertqueue.h \
     core/controller/gauge.h \
-    core/controller/test.h \
     core/controller/topbar.h \
     core/uarthandler.h

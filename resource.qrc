@@ -4,6 +4,7 @@
         <file>qml/Body.qml</file>
         <file>qml/Gauge.qml</file>
         <file>qml/TopBar.qml</file>
+        <file>qml/Alert.qml</file>
     </qresource>
     <qresource prefix="/resource/image">
         <file>resource/image/background.png</file>

@@ -16,4 +16,8 @@ Window {
     Body {
         id: body
     }
+
+    Component.onCompleted: {
+        alertQueueHandler.addWarningAlert("qrc:/resource/image/resource/image/weather/fullSunWeatherIcon.png", "WELCOME", "Hey Marco, welcome to ECM");
+    }
 }

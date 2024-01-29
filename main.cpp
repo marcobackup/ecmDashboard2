@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include "core/alertqueue.h"
 #include "core/uarthandler.h"
 #include "core/can/messagehandler.h"
 #include "core/controller.h"
@@ -14,8 +15,10 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
-    // controllers
+    // alert queue handler
+    AlertQueue alertQueueHandler;
 
+    // controllers
     Gauge gaugeController;
     TopBar topBarController;
 
@@ -39,9 +42,10 @@ int main(int argc, char *argv[])
     QQmlContext *context(engine.rootContext());
     context->setContextProperty("gaugeController", (QObject *) &gaugeController);
     context->setContextProperty("topBarController", (QObject *) &topBarController);
+    context->setContextProperty("alertQueueHandler", (QObject *) &alertQueueHandler);
 
     // listen to incoming uart data
-    QObject::connect(&uartHandler, &UartHandler::dataReceived, [&uartHandler, &messageHandler](UartHandler::rxMessage data) {
+    QObject::connect(&uartHandler, &UartHandler::dataReceived, [&messageHandler](UartHandler::rxMessage data) {
         messageHandler.handleMessageData(data);
     });
 
