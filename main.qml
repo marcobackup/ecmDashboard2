@@ -8,6 +8,12 @@ Window {
     visible: true
     title: qsTr("ECM dashboard")
 
+    FontLoader {
+        id: nesLowercaseFont
+        source: "qrc:/resource/font/resource/font/NES_Lowercase.ttf"
+    }
+
     Body {
+        id: body
     }
 }

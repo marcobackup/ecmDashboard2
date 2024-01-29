@@ -12,6 +12,13 @@
         <file>resource/image/indicatorLight/leftArrow.png</file>
         <file>resource/image/indicatorLight/lowBeamLight.png</file>
         <file>resource/image/indicatorLight/rightArrow.png</file>
+        <file>resource/image/clockIcon.png</file>
+        <file>resource/image/weather/clockIcon.png</file>
+        <file>resource/image/weather/cloudlyWeatherIcon.png</file>
+        <file>resource/image/weather/fullSunWeatherIcon.png</file>
+        <file>resource/image/weather/moonWeatherIcon.png</file>
+        <file>resource/image/weather/snowWeatherIcon.png</file>
+        <file>resource/image/weather/sunnyWeatherIcon.png</file>
     </qresource>
     <qresource prefix="/resource/font">
         <file>resource/font/NES_Lowercase.ttf</file>

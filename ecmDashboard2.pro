@@ -1,10 +1,21 @@
 QT += quick
+QT += serialport
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        core/controller.cpp \
+        core/uarthandler.cpp \
+        core/can/deserializer.cpp \
+        core/can/serializer.cpp \
+        core/can/messagehandler.cpp \
+        core/can/message/environmentalConditions.cpp \
+        core/can/message/externalLights.cpp \
+        core/can/message/vehicleSpeedOdometer.cpp \
+        core/controller/gauge.cpp \
+        core/controller/topbar.cpp \
         main.cpp
 
 RESOURCES += resource.qrc
@@ -19,3 +30,9 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+HEADERS += \
+    core/controller/gauge.h \
+    core/controller/test.h \
+    core/controller/topbar.h \
+    core/uarthandler.h
