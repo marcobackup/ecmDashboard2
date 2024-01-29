@@ -1,5 +1,6 @@
 QT += quick
 QT += serialport
+QT += multimedia
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -9,6 +10,7 @@ SOURCES += \
         core/controller/alert.cpp \
         core/alertqueue.cpp \
         core/controller.cpp \
+        core/soundhandler.cpp \
         core/uarthandler.cpp \
         core/can/deserializer.cpp \
         core/can/serializer.cpp \
@@ -38,4 +40,5 @@ HEADERS += \
     core/alertqueue.h \
     core/controller/gauge.h \
     core/controller/topbar.h \
+    core/soundhandler.h \
     core/uarthandler.h

@@ -24,4 +24,8 @@
     <qresource prefix="/resource/font">
         <file>resource/font/NES_Lowercase.ttf</file>
     </qresource>
+    <qresource prefix="/resource/sound">
+        <file>resource/sound/button_menu.wav</file>
+        <file>resource/sound/warning_chime.wav</file>
+    </qresource>
 </RCC>

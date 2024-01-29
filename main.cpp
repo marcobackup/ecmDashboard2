@@ -7,6 +7,7 @@
 #include "core/controller.h"
 #include "core/controller/gauge.h"
 #include "core/controller/topbar.h"
+#include "core/soundhandler.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +15,9 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
     QGuiApplication app(argc, argv);
+
+    // sound handler
+    SoundHandler soundHandler;
 
     // alert queue handler
     AlertQueue alertQueueHandler;
@@ -28,7 +32,7 @@ int main(int argc, char *argv[])
     UartHandler uartHandler;
 
     // message handler instance
-    MessageHandler messageHandler(&controller);
+    MessageHandler messageHandler(&controller, &alertQueueHandler);
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
@@ -48,6 +52,9 @@ int main(int argc, char *argv[])
     QObject::connect(&uartHandler, &UartHandler::dataReceived, [&messageHandler](UartHandler::rxMessage data) {
         messageHandler.handleMessageData(data);
     });
+
+    // start up chime effect
+    soundHandler.playWarningChimeSoundEffect(2);
 
     engine.load(url);
 

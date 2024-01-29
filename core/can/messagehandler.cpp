@@ -1,14 +1,16 @@
 #include "messagehandler.h"
 #include "core/uarthandler.h"
 #include "core/controller.h"
+#include "core/alertQueue.h"
 #include <QDebug>
 
 #include "core/can/message/environmentalConditions.h"
 #include "core/can/message/externalLights.h"
 #include "core/can/message/vehicleSpeedOdometer.h"
 
-MessageHandler::MessageHandler(Controller *controller)
-    : controller(controller) {
+MessageHandler::MessageHandler(Controller *controller, AlertQueue *alertQueue)
+    : controller(controller)
+    , alertQueue(alertQueue) {
     EnvironmentalConditions environmentalConditions;
     EnvironmentalConditions::environmentalConditionsStruct environmentalConditionsResponse;
     ExternalLights externalLights;
@@ -38,6 +40,7 @@ void MessageHandler::handleMessageData(UartHandler::rxMessage message) {
             if(!iceOnRoadWarningStatus) {
                 if(environmentalTemperature <= minEnvironmentalTemperature) {
                     iceOnRoadWarningStatus = true;
+                    alertQueue->addWarningAlert("qrc:/resource/image/resource/image/weather/snowWeatherIcon.png", "ATTENZIONE", "possibile ghiaccio su strada, prestare attenzione");
                 }
             }
             if(environmentalTemperature > minEnvironmentalTemperature)

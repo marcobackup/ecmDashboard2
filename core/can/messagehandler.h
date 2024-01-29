@@ -4,6 +4,7 @@
 #include <QObject>
 #include "core/uarthandler.h"
 #include "core/controller.h"
+#include "core/alertQueue.h"
 
 #include "core/can/message/environmentalConditions.h"
 #include "core/can/message/externalLights.h"
@@ -12,6 +13,7 @@
 class MessageHandler {
 private:
     Controller *controller;
+    AlertQueue *alertQueue;
     EnvironmentalConditions environmentalConditions;
     EnvironmentalConditions::environmentalConditionsStruct environmentalConditionsResponse;
     ExternalLights externalLights;
@@ -32,7 +34,7 @@ private:
     bool rightTurnLightFailStatus;
     bool steeringWheelFailStatus;
 public:
-    MessageHandler(Controller *controller);
+    MessageHandler(Controller *controller, AlertQueue *alertQueue);
     ~MessageHandler();
     void handleMessageData(UartHandler::rxMessage message);
 };
