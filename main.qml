@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import "qml"
 
 Window {
     width: 800
@@ -7,26 +8,6 @@ Window {
     visible: true
     title: qsTr("ECM dashboard")
 
-    property bool status: false
-
-    Rectangle {
-        id: rect
-        width: 250
-        height: width
-        anchors.centerIn: parent
-        radius: 90
-        color: {
-            if(status)
-                return "#b70009"
-            else
-                return "#161517"
-        }
-    }
-
-    MouseArea {
-        anchors.fill: rect
-        onClicked: {
-            status = !status
-        }
+    Body {
     }
 }

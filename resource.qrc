@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qml/Body.qml</file>
+        <file>qml/Gauge.qml</file>
+        <file>qml/TopBar.qml</file>
+    </qresource>
+    <qresource prefix="/resource/image">
+        <file>resource/image/background.png</file>
+        <file>resource/image/gauge.png</file>
+        <file>resource/image/indicatorLight/highBeamLight.png</file>
+        <file>resource/image/indicatorLight/leftArrow.png</file>
+        <file>resource/image/indicatorLight/lowBeamLight.png</file>
+        <file>resource/image/indicatorLight/rightArrow.png</file>
+    </qresource>
+    <qresource prefix="/resource/font">
+        <file>resource/font/NES_Lowercase.ttf</file>
+    </qresource>
+</RCC>
