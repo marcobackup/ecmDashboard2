@@ -12,6 +12,7 @@
 #include "core/can/message/statusBcm2.h"
 #include "core/can/message/statusBEcm.h"
 #include "core/can/message/statusBEcm2.h"
+#include "core/can/message/statusBEps.h"
 #include "core/can/message/statusSdm.h"
 #include "core/can/message/tripAB.h"
 #include "core/can/message/vehicleSpeedOdometer.h"
@@ -32,6 +33,8 @@ private:
     StatusBEcm::statusBEcmStruct statusBEcmResponse;
     StatusBEcm2 statusBEcm2;
     StatusBEcm2::statusBEcm2Struct statusBEcm2Response;
+    StatusBEps statusBEps;
+    StatusBEps::statusBEpsStruct statusBEpsResponse;
     VehicleSpeedOdometer vehicleSpeedOdometer;
     VehicleSpeedOdometer::vehicleSpeedOdometerStruct vehicleSpeedOdometerResponse;
 

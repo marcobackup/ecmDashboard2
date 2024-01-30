@@ -10,6 +10,7 @@
 #include "core/can/message/statusBcm2.h"
 #include "core/can/message/statusBEcm.h"
 #include "core/can/message/statusBEcm2.h"
+#include "core/can/message/statusBEps.h"
 #include "core/can/message/statusSdm.h"
 #include "core/can/message/tripAB.h"
 #include "core/can/message/vehicleSpeedOdometer.h"
@@ -29,6 +30,8 @@ MessageHandler::MessageHandler(Controller *controller, AlertQueue *alertQueue)
     StatusBEcm::statusBEcmStruct statusBEcmResponse;
     StatusBEcm2 statusBEcm2;
     StatusBEcm2::statusBEcm2Struct statusBEcm2Response;
+    StatusBEps statusBEps;
+    StatusBEps::statusBEpsStruct statusBEpsResponse;
     VehicleSpeedOdometer vehicleSpeedOdometer;
     VehicleSpeedOdometer::vehicleSpeedOdometerStruct vehicleSpeedOdometerResponse;
 
@@ -99,6 +102,69 @@ void MessageHandler::handleMessageData(UartHandler::rxMessage message) {
             controller->topBar->setHighBeamLightStatus(true);
         else
             controller->topBar->setHighBeamLightStatus(false);
+    }
+    if(message.arbitration_id == 0x6214000) {
+        statusBcmResponse = statusBcm.deserialize(message.data);
+
+        // bonnet status
+        if(statusBcmResponse.bonnetSts == STATUS_BCM_bonnetSts_Open_CHOICE)
+            controller->bottomBar->setBonnetStatus(true);
+        else
+            controller->bottomBar->setBonnetStatus(false);
+
+        // hatch status
+        if(statusBcmResponse.rHatchSts == STATUS_BCM_rHatchSts_Open_CHOICE)
+            controller->bottomBar->setBonnetStatus(true);
+        else
+            controller->bottomBar->setBonnetStatus(false);
+
+        // fuel level
+        if(statusBcmResponse.fuelLevelFailSts != STATUS_BCM_fuelLevelFailSts_Fail_Present_CHOICE)
+            controller->carParameter->setFuelLevel(statusBcm.fuelLevelDecode(statusBcmResponse.fuelLevel));
+        else
+            controller->carParameter->setFuelLevel(0);
+
+        // low fuel level warning status
+        if(statusBcmResponse.lowFuelWarningSts == STATUS_BCM_lowFuelWarningSts_ON_CHOICE)
+            controller->carParameter->setLowFuelLevelWarningStatus(true);
+        else
+            controller->carParameter->setLowFuelLevelWarningStatus(false);
+    }
+    if(message.arbitration_id == 0x4214001) {
+        statusBEcmResponse = statusBEcm.deserialize(message.data);
+
+        // rpm
+        if(statusBEcmResponse.engineSpeedValidData != STATUS_B_ECM_engineSpeedValidData_Not_valid_CHOICE)
+            controller->gauge->setRpm(statusBEcm.engineSpeedDecode(statusBEcmResponse.engineSpeed));
+        else
+            controller->gauge->setRpm(0);
+
+        // coolant temperature
+        if(statusBEcmResponse.engineWaterTempFailSts != STATUS_B_ECM_engineWaterTempFailSts_Fail_Present_CHOICE)
+            controller->carParameter->setCoolantTemperature(statusBEcm.engineWaterTempDecode(statusBEcmResponse.engineWaterTemp));
+        else
+            controller->carParameter->setCoolantTemperature(0);
+
+        // high coolant temperature warning status
+        if(statusBEcmResponse.engineWaterTempWarningLightSts == STATUS_B_ECM_engineWaterTempWarningLightSts_ON_CHOICE)
+            controller->carParameter->setHighCoolantTemperatureWarningStatus(true);
+        else
+            controller->carParameter->setHighCoolantTemperatureWarningStatus(false);
+    }
+    if(message.arbitration_id == 0x4294001) {
+        statusBEcm2Response = statusBEcm2.deserialize(message.data);
+
+        // turbo pressure
+        controller->carParameter->setBoostPressure(statusBEcm2.boostPressureIndicationDecode(statusBEcm2Response.boostPressureIndication));
+    }
+    if(message.arbitration_id == 0x4214002) {
+        statusBEpsResponse = statusBEps.deserialize(message.data);
+
+        // steering wheel fault status
+        if(statusBEpsResponse.electricSteeringFailSts == STATUS_B_EPS_electricSteeringFailSts_Fail_Present_CHOICE)
+            controller->bottomBar->setSteeringWheelFaultStatus(true);
+        else
+            controller->bottomBar->setSteeringWheelFaultStatus(false);
     }
     if(message.arbitration_id == 0x4394000) {
         vehicleSpeedOdometerResponse = vehicleSpeedOdometer.deserialize(message.data);
