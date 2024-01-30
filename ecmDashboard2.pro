@@ -27,6 +27,7 @@ SOURCES += \
         core/can/message/statusBcm2.cpp \
         core/can/message/statusBEcm.cpp \
         core/can/message/statusBEcm2.cpp \
+        core/can/message/statusBEps.cpp \
         core/can/message/statusSdm.cpp \
         core/can/message/tripAB.cpp \
         main.cpp
