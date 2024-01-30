@@ -6,7 +6,10 @@
 #include "core/can/messagehandler.h"
 #include "core/controller.h"
 #include "core/controller/gauge.h"
+#include "core/controller/carparameter.h"
+#include "core/controller/trip.h"
 #include "core/controller/topbar.h"
+#include "core/controller/bottombar.h"
 #include "core/soundhandler.h"
 
 int main(int argc, char *argv[])
@@ -24,9 +27,12 @@ int main(int argc, char *argv[])
 
     // controllers
     Gauge gaugeController;
+    CarParameter carParameterController;
+    Trip tripController;
     TopBar topBarController;
+    BottomBar bottomBarController;
 
-    Controller controller(&gaugeController, &topBarController);
+    Controller controller(&gaugeController, &carParameterController, &tripController, &topBarController, &bottomBarController);
 
     // uart handler instance
     UartHandler uartHandler;
@@ -45,7 +51,10 @@ int main(int argc, char *argv[])
     // set qt object as property
     QQmlContext *context(engine.rootContext());
     context->setContextProperty("gaugeController", (QObject *) &gaugeController);
+    context->setContextProperty("carParameterController", (QObject *) &carParameterController);
+    context->setContextProperty("tripController", (QObject *) &tripController);
     context->setContextProperty("topBarController", (QObject *) &topBarController);
+    context->setContextProperty("bottomBarController", (QObject *) &bottomBarController);
     context->setContextProperty("alertQueueHandler", (QObject *) &alertQueueHandler);
 
     // listen to incoming uart data

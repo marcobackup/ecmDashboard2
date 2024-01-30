@@ -7,13 +7,13 @@ Item {
     height: 50
     anchors.bottom: parent.bottom
 
-    property bool handBrakeStatus: true
-    property bool steeringWheelFaultStatus: true
-    property bool sbrRLStatus
-    property bool sbrRCStatus
-    property bool sbrRRStatus
-    property bool bonnetStatus: true
-    property bool lightFaultStatus: true
+    property bool handBrakeStatus: bottomBarController.handBrakeStatus
+    property bool steeringWheelFaultStatus: bottomBarController.steeringWheelFaultStatus
+    property bool sbrRLStatus: bottomBarController.sbrRLStatus
+    property bool sbrRCStatus: bottomBarController.sbrRCStatus
+    property bool sbrRRStatus: bottomBarController.sbrRRStatus
+    property bool bonnetStatus: bottomBarController.bonnetStatus
+    property bool lightFaultStatus: bottomBarController.lightFaultStatus
 
     Rectangle {
         anchors.fill: parent

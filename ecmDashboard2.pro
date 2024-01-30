@@ -10,6 +10,9 @@ SOURCES += \
         core/controller/alert.cpp \
         core/alertqueue.cpp \
         core/controller.cpp \
+        core/controller/bottombar.cpp \
+        core/controller/carparameter.cpp \
+        core/controller/trip.cpp \
         core/soundhandler.cpp \
         core/uarthandler.cpp \
         core/can/deserializer.cpp \
@@ -38,7 +41,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     core/controller/alert.h \
     core/alertqueue.h \
+    core/controller/bottombar.h \
+    core/controller/carparameter.h \
     core/controller/gauge.h \
     core/controller/topbar.h \
+    core/controller/trip.h \
     core/soundhandler.h \
     core/uarthandler.h

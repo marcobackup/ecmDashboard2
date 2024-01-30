@@ -41,7 +41,7 @@ Item {
                             var dynamicAlert = Qt.createQmlObject('import QtQuick 2.15; Alert {}', parent)
                             dynamicAlert.anchors.right = parent.right
                             dynamicAlert.anchors.bottom = parent.bottom
-                            dynamicAlert.anchors.bottomMargin = 70
+                            dynamicAlert.anchors.bottomMargin = 68
                             dynamicAlert.alertType = frontAlert.type
                             dynamicAlert.alertIcon = frontAlert.icon
                             dynamicAlert.alertTitle = frontAlert.title

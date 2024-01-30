@@ -6,6 +6,13 @@ Item {
     width: parent.width
     height: 105
 
+    property real fuelLevel: carParameterController.fuelLevel
+    property bool lowFuelLevelWarningStatus: carParameterController.lowFuelLevelWarningStatus
+    property real coolantTemperature: carParameterController.coolantTemperature
+    property bool highCoolantTemperatureWarningStatus: carParameterController.highCoolantTemperatureWarningStatus
+    property real turboPressure: carParameterController.turboPressure
+    property real batteryVoltage: carParameterController.batteryVoltage
+
     RowLayout {
         anchors.fill: parent
 
@@ -29,7 +36,7 @@ Item {
                     font.pixelSize: 22
                     font.family: nesLowercaseFont.name
                     font.bold: true
-                    text: "Ciao"
+                    text: fuelLevel
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top: fuelLevelIcon.bottom
                     anchors.topMargin: 12
@@ -57,7 +64,7 @@ Item {
                     font.pixelSize: 22
                     font.family: nesLowercaseFont.name
                     font.bold: true
-                    text: "Ciao"
+                    text: coolantTemperature + "°C"
                     anchors.left: parent.left
                     anchors.top: coolantTemperatureIcon.bottom
                     anchors.topMargin: 12
@@ -85,7 +92,7 @@ Item {
                     font.pixelSize: 22
                     font.family: nesLowercaseFont.name
                     font.bold: true
-                    text: "Ciao"
+                    text: turboPressure + " bar"
                     anchors.right: parent.right
                     anchors.top: turboPressureIcon.bottom
                     anchors.topMargin: 12
@@ -113,7 +120,9 @@ Item {
                     font.pixelSize: 22
                     font.family: nesLowercaseFont.name
                     font.bold: true
-                    text: "Ciao"
+                    text: {
+                        return batteryVoltage.toFixed(1) + "v"
+                    }
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top: batteryVoltageIcon.bottom
                     anchors.topMargin: 12
