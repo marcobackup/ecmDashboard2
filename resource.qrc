@@ -39,6 +39,11 @@
         <file>resource/image/carParameter/coolantTemperatureIcon.png</file>
         <file>resource/image/carParameter/fuelLevelIcon.png</file>
         <file>resource/image/carParameter/turboPressureIcon.png</file>
+        <file>resource/image/indicatorLight/bonnet.png</file>
+        <file>resource/image/indicatorLight/handBrake.png</file>
+        <file>resource/image/indicatorLight/lightFault.png</file>
+        <file>resource/image/indicatorLight/sbr.png</file>
+        <file>resource/image/indicatorLight/steeringWheelFault.png</file>
     </qresource>
     <qresource prefix="/resource/font">
         <file>resource/font/NES_Lowercase.ttf</file>
