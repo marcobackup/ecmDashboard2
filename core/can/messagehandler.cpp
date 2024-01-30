@@ -75,6 +75,9 @@ void MessageHandler::handleMessageData(UartHandler::rxMessage message) {
 
             controller->topBar->setEnvironmentalTemperature(environmentalTemperature);
         }
+
+        // battery voltage
+        controller->carParameter->setBatteryVoltage(environmentalConditions.batteryVoltageLevelDecode(environmentalConditionsResponse.batteryVoltageLevel));
     }
     if(message.arbitration_id == 0x2214000) {
         externalLightsResponse = externalLights.deserialize(message.data);
@@ -102,6 +105,79 @@ void MessageHandler::handleMessageData(UartHandler::rxMessage message) {
             controller->topBar->setHighBeamLightStatus(true);
         else
             controller->topBar->setHighBeamLightStatus(false);
+
+        /*
+         * light fault status
+         */
+
+        // stop light fault
+        if(externalLightsResponse.lHStopLightFailSts == EXTERNAL_LIGHTS_lHStopLightFailSts_Fail_Present_CHOICE) {
+            if(!stopLightFailStatus) {
+                alertQueue->addFaultAlert("qrc:/resource/image/resource/image/indicatorLight/lightFault.png", "LUCI STOP", "attenzione, far controllare luci stop");
+                stopLightFailStatus = true;
+            }
+        } else
+            stopLightFailStatus = false;
+
+        // rear fog light fault
+        if(externalLightsResponse.lHRearFogLightFailSts == EXTERNAL_LIGHTS_lHRearFogLightFailSts_Fail_Present_CHOICE) {
+            if(!rearFogLightFailStatus) {
+                alertQueue->addFaultAlert("qrc:/resource/image/resource/image/indicatorLight/lightFault.png", "LUCI RETRONEBBIA", "attenzione, far controllare luci retronebbia");
+                rearFogLightFailStatus = true;
+            }
+        } else
+            rearFogLightFailStatus = false;
+
+        // drl fault
+        if(externalLightsResponse.dRLFault == EXTERNAL_LIGHTS_dRLFault_True_CHOICE) {
+            if(!drlFailStatus) {
+                alertQueue->addFaultAlert("qrc:/resource/image/resource/image/indicatorLight/lightFault.png", "LUCI DIURNE", "attenzione, far controllare luci diurne");
+                drlFailStatus = true;
+            }
+        } else
+            drlFailStatus = false;
+
+        // plate light fault
+        if(externalLightsResponse.plateLightFailSts == EXTERNAL_LIGHTS_plateLightFailSts_Fail_Present_CHOICE) {
+            if(!plateLightFailStatus) {
+                alertQueue->addFaultAlert("qrc:/resource/image/resource/image/indicatorLight/lightFault.png", "LUCI TARGA", "attenzione, far controllare luci targa");
+                plateLightFailStatus = true;
+            }
+        } else
+            plateLightFailStatus = false;
+
+        // park light fault
+        if(externalLightsResponse.rHFParkTailLightFailSts == EXTERNAL_LIGHTS_rHFParkTailLightFailSts_Fail_Present_CHOICE ||
+            externalLightsResponse.lHFParkTailLightFailSts == EXTERNAL_LIGHTS_lHFParkTailLightFailSts_Fail_Present_CHOICE) {
+            if(!parkLightFailStatus) {
+                alertQueue->addFaultAlert("qrc:/resource/image/resource/image/indicatorLight/lightFault.png", "LUCI DI POSIZIONE", "attenzione, far controllare luci di posizione");
+                parkLightFailStatus = true;
+            }
+        } else
+            parkLightFailStatus = false;
+
+        // left turn light fault
+        if(externalLightsResponse.lHFTurnLightFailSts == EXTERNAL_LIGHTS_lHFParkTailLightFailSts_Fail_Present_CHOICE) {
+            if(!leftTurnLightFailStatus) {
+                alertQueue->addFaultAlert("qrc:/resource/image/resource/image/indicatorLight/lightFault.png", "LUCI FRECCE", "attenzione, far controllare luci freccia sinistra");
+                leftTurnLightFailStatus = true;
+            }
+        } else
+            leftTurnLightFailStatus = false;
+
+        // right turn light fault
+        if(externalLightsResponse.rHFTurnLightFailSts == EXTERNAL_LIGHTS_rHFParkTailLightFailSts_Fail_Present_CHOICE) {
+            if(!rightTurnLightFailStatus) {
+                alertQueue->addFaultAlert("qrc:/resource/image/resource/image/indicatorLight/lightFault.png", "LUCI FRECCE", "attenzione, far controllare luci freccia destra");
+                rightTurnLightFailStatus = true;
+            }
+        } else
+            rightTurnLightFailStatus = false;
+
+        if(stopLightFailStatus || rearFogLightFailStatus || drlFailStatus || parkLightFailStatus || plateLightFailStatus || leftTurnLightFailStatus || rightTurnLightFailStatus)
+            controller->bottomBar->setLightFaultStatus(true);
+        else
+            controller->bottomBar->setLightFaultStatus(false);
     }
     if(message.arbitration_id == 0x6214000) {
         statusBcmResponse = statusBcm.deserialize(message.data);

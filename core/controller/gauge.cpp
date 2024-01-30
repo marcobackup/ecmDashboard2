@@ -2,7 +2,7 @@
 
 Gauge::Gauge(QObject *parent)
     : QObject{parent}
-    , m_speed(130)
+    , m_speed(0)
     , m_rpm(0)
 {
 }
