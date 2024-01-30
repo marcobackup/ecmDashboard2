@@ -21,7 +21,7 @@ Item {
     }
     Text {
         text: "KM/H"
-        font.pixelSize: 22
+        font.pixelSize: 20
         color: "#d9d9d9"
         anchors.top: speedText.bottom
         anchors.topMargin: -12

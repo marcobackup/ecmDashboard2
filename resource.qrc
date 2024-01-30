@@ -9,6 +9,10 @@
         <file>qml/main/TopBar.qml</file>
         <file>qml/main/Main.qml</file>
         <file>qml/main/gauge/Speed.qml</file>
+        <file>qml/main/carParameter/BatteryVoltage.qml</file>
+        <file>qml/main/carParameter/CoolantTemperature.qml</file>
+        <file>qml/main/carParameter/FuelLevel.qml</file>
+        <file>qml/main/carParameter/TurboPressure.qml</file>
     </qresource>
     <qresource prefix="/resource/image">
         <file>resource/image/gauge.png</file>
@@ -31,6 +35,10 @@
         <file>resource/image/car/carLightOff.png</file>
         <file>resource/image/car/carLightOn.png</file>
         <file>resource/image/car/carParked.png</file>
+        <file>resource/image/carParameter/batteryVoltageIcon.png</file>
+        <file>resource/image/carParameter/coolantTemperatureIcon.png</file>
+        <file>resource/image/carParameter/fuelLevelIcon.png</file>
+        <file>resource/image/carParameter/turboPressureIcon.png</file>
     </qresource>
     <qresource prefix="/resource/font">
         <file>resource/font/NES_Lowercase.ttf</file>

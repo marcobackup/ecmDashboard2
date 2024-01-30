@@ -12,6 +12,10 @@ Item {
         Speed {
         }
 
+        CarParameter {
+            anchors.bottom: parent.bottom
+        }
+
         Image {
             source: "qrc:/resource/image/resource/image/car/carLightOn.png"
             anchors.horizontalCenter: parent.horizontalCenter
