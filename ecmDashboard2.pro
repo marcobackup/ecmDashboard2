@@ -13,6 +13,8 @@ SOURCES += \
         core/controller/bottombar.cpp \
         core/controller/carparameter.cpp \
         core/controller/trip.cpp \
+        core/controller/gauge.cpp \
+        core/controller/topbar.cpp \
         core/soundhandler.cpp \
         core/uarthandler.cpp \
         core/can/deserializer.cpp \
@@ -21,8 +23,12 @@ SOURCES += \
         core/can/message/environmentalConditions.cpp \
         core/can/message/externalLights.cpp \
         core/can/message/vehicleSpeedOdometer.cpp \
-        core/controller/gauge.cpp \
-        core/controller/topbar.cpp \
+        core/can/message/statusBcm.cpp \
+        core/can/message/statusBcm2.cpp \
+        core/can/message/statusBEcm.cpp \
+        core/can/message/statusBEcm2.cpp \
+        core/can/message/statusSdm.cpp \
+        core/can/message/tripAB.cpp \
         main.cpp
 
 RESOURCES += resource.qrc

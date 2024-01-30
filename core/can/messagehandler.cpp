@@ -6,6 +6,12 @@
 
 #include "core/can/message/environmentalConditions.h"
 #include "core/can/message/externalLights.h"
+#include "core/can/message/statusBcm.h"
+#include "core/can/message/statusBcm2.h"
+#include "core/can/message/statusBEcm.h"
+#include "core/can/message/statusBEcm2.h"
+#include "core/can/message/statusSdm.h"
+#include "core/can/message/tripAB.h"
 #include "core/can/message/vehicleSpeedOdometer.h"
 
 MessageHandler::MessageHandler(Controller *controller, AlertQueue *alertQueue)
