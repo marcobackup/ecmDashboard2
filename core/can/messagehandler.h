@@ -4,10 +4,16 @@
 #include <QObject>
 #include "core/uarthandler.h"
 #include "core/controller.h"
-#include "core/alertQueue.h"
+#include "core/alertqueue.h"
 
 #include "core/can/message/environmentalConditions.h"
 #include "core/can/message/externalLights.h"
+#include "core/can/message/statusBcm.h"
+#include "core/can/message/statusBcm2.h"
+#include "core/can/message/statusBEcm.h"
+#include "core/can/message/statusBEcm2.h"
+#include "core/can/message/statusSdm.h"
+#include "core/can/message/tripAB.h"
 #include "core/can/message/vehicleSpeedOdometer.h"
 
 class MessageHandler {
@@ -18,6 +24,14 @@ private:
     EnvironmentalConditions::environmentalConditionsStruct environmentalConditionsResponse;
     ExternalLights externalLights;
     ExternalLights::externalLightsStruct externalLightsResponse;
+    StatusBcm statusBcm;
+    StatusBcm::statusBcmStruct statusBcmResponse;
+    StatusBcm2 statusBcm2;
+    StatusBcm2::statusBcm2Struct statusBcm2Response;
+    StatusBEcm statusBEcm;
+    StatusBEcm::statusBEcmStruct statusBEcmResponse;
+    StatusBEcm2 statusBEcm2;
+    StatusBEcm2::statusBEcm2Struct statusBEcm2Response;
     VehicleSpeedOdometer vehicleSpeedOdometer;
     VehicleSpeedOdometer::vehicleSpeedOdometerStruct vehicleSpeedOdometerResponse;
 

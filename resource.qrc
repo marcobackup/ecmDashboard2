@@ -13,6 +13,7 @@
         <file>qml/main/carParameter/CoolantTemperature.qml</file>
         <file>qml/main/carParameter/FuelLevel.qml</file>
         <file>qml/main/carParameter/TurboPressure.qml</file>
+        <file>qml/main/trip/KeyOnCounter.qml</file>
     </qresource>
     <qresource prefix="/resource/image">
         <file>resource/image/gauge.png</file>

@@ -1,7 +1,7 @@
 #include "messagehandler.h"
 #include "core/uarthandler.h"
 #include "core/controller.h"
-#include "core/alertQueue.h"
+#include "core/alertqueue.h"
 #include <QDebug>
 
 #include "core/can/message/environmentalConditions.h"
@@ -15,11 +15,29 @@ MessageHandler::MessageHandler(Controller *controller, AlertQueue *alertQueue)
     EnvironmentalConditions::environmentalConditionsStruct environmentalConditionsResponse;
     ExternalLights externalLights;
     ExternalLights::externalLightsStruct externalLightsResponse;
+    StatusBcm statusBcm;
+    StatusBcm::statusBcmStruct statusBcmResponse;
+    StatusBcm2 statusBcm2;
+    StatusBcm2::statusBcm2Struct statusBcm2Response;
+    StatusBEcm statusBEcm;
+    StatusBEcm::statusBEcmStruct statusBEcmResponse;
+    StatusBEcm2 statusBEcm2;
+    StatusBEcm2::statusBEcm2Struct statusBEcm2Response;
     VehicleSpeedOdometer vehicleSpeedOdometer;
     VehicleSpeedOdometer::vehicleSpeedOdometerStruct vehicleSpeedOdometerResponse;
 
     // dynamic var
     bool iceOnRoadWarningStatus = false;
+    bool lowFuelWarningStatus = false;
+    bool highCoolantTemperatureWarningStatus = false;
+    bool stopLightFailStatus = false;
+    bool rearFogLightFailStatus = false;
+    bool drlFailStatus = false;
+    bool parkLightFailStatus = false;
+    bool plateLightFailStatus = false;
+    bool leftTurnLightFailStatus = false;
+    bool rightTurnLightFailStatus = false;
+    bool steeringWheelFailStatus = false;
 }
 
 MessageHandler::~MessageHandler() {

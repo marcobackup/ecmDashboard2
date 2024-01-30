@@ -18,10 +18,14 @@ Item {
 
         Image {
             source: {
-                if(topBarController.lowBeamLightStatus)
-                    return "qrc:/resource/image/resource/image/car/carLightOn.png"
-                else
-                    return "qrc:/resource/image/resource/image/car/carLightOff.png"
+                if(bottomBarController.handBrakeStatus || bottomBarController.bonnetStatus) {
+                    return "qrc:/resource/image/resource/image/car/carParked.png"
+                } else {
+                    if(topBarController.lowBeamLightStatus || topBarController.highBeamLightStatus)
+                        return "qrc:/resource/image/resource/image/car/carLightOn.png"
+                    else
+                        return "qrc:/resource/image/resource/image/car/carLightOff.png"
+                }
             }
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
