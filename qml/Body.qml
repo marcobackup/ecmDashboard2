@@ -1,7 +1,10 @@
 import QtQuick 2.0
+import "main"
 
 Item {
     anchors.fill: parent
+
+    property int theme: 0
 
     Rectangle {
         anchors.fill: parent
@@ -9,18 +12,25 @@ Item {
 
         Image {
             id: mainContainer
-            source: "qrc:/resource/image/resource/image/background.png"
+            source: {
+                if(theme == 0)
+                    return "qrc:/resource/image/resource/image/background/backgroundRed.png"
+                if(theme == 1)
+                    return "qrc:/resource/image/resource/image/background/backgroundDarkblue.png"
+                if(theme == 2)
+                    return "qrc:/resource/image/resource/image/background/backgroundGold.png"
+                if(theme == 3)
+                    return "qrc:/resource/image/resource/image/background/backgroundSilver.png"
+            }
 
             TopBar {
                 id: topBar
             }
 
-            Rectangle {
+            Main {
+                id: main
                 anchors.top: topBar.bottom
-                anchors.bottom: parent.bottom
-                anchors.left: parent.left
-                anchors.right: parent.right
-                color: "transparent"
+                anchors.bottom: bottomBar.top
 
                 // alerts handling
                 Connections {
@@ -31,7 +41,7 @@ Item {
                             var dynamicAlert = Qt.createQmlObject('import QtQuick 2.15; Alert {}', parent)
                             dynamicAlert.anchors.right = parent.right
                             dynamicAlert.anchors.bottom = parent.bottom
-                            dynamicAlert.anchors.bottomMargin = 50
+                            dynamicAlert.anchors.bottomMargin = 70
                             dynamicAlert.alertType = frontAlert.type
                             dynamicAlert.alertIcon = frontAlert.icon
                             dynamicAlert.alertTitle = frontAlert.title
@@ -51,10 +61,10 @@ Item {
                         }
                     }
                 }
+            }
 
-                Gauge {
-                    id: gauge
-                }
+            BottomBar {
+                id: bottomBar
             }
         }
     }

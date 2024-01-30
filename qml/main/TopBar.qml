@@ -4,7 +4,7 @@ import QtGraphicalEffects 1.15
 
 Item {
     width: parent.width
-    height: 40
+    height: 60
 
     property real environmentalTemperature: topBarController.environmentalTemperature
     property string hour: topBarController.hour
@@ -48,7 +48,7 @@ Item {
                                 return "qrc:/resource/image/resource/image/weather/fullSunWeatherIcon.png"
                         }
                     }
-                    width: 30
+                    width: 50
                     height: width / sourceSize.width * sourceSize.height
                     anchors.left: parent.left
                     anchors.leftMargin: 20
@@ -56,7 +56,7 @@ Item {
                 }
                 Text {
                     text: environmentalTemperature + "°C"
-                    font.pixelSize: 19
+                    font.pixelSize: 28
                     font.family: nesLowercaseFont.name
                     color: "#D9D9D9"
                     anchors.left: weatherIcon.right
@@ -71,6 +71,7 @@ Item {
 
                 RowLayout {
                     anchors.fill: parent
+                    spacing: 0
 
                     Rectangle {
                         Layout.fillWidth: true
@@ -80,7 +81,7 @@ Item {
                         Image {
                             id: leftArrow
                             source: "qrc:/resource/image/resource/image/indicatorLight/leftArrow.png"
-                            width: 18
+                            width: 22
                             height: width / sourceSize.width * sourceSize.height
                             anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
@@ -114,9 +115,10 @@ Item {
                                 Image {
                                     id: lowBeamLight
                                     source: "qrc:/resource/image/resource/image/indicatorLight/lowBeamLight.png"
-                                    width: 32
+                                    width: 42
                                     height: width / sourceSize.width * sourceSize.height
-                                    anchors.centerIn: parent
+                                    anchors.left: parent.left
+                                    anchors.verticalCenter: parent.verticalCenter
                                 }
                                 ColorOverlay {
                                     anchors.fill: lowBeamLight
@@ -139,7 +141,7 @@ Item {
                                 Image {
                                     id: highBeamLight
                                     source: "qrc:/resource/image/resource/image/indicatorLight/highBeamLight.png"
-                                    width: 32
+                                    width: 42
                                     height: width / sourceSize.width * sourceSize.height
                                     anchors.centerIn: parent
                                 }
@@ -166,7 +168,7 @@ Item {
                         Image {
                             id: rightArrow
                             source: "qrc:/resource/image/resource/image/indicatorLight/rightArrow.png"
-                            width: 18
+                            width: 22
                             height: width / sourceSize.width * sourceSize.height
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
@@ -195,7 +197,7 @@ Item {
                 Image {
                     id: hourIcon
                     source: "qrc:/resource/image/resource/image/clockIcon.png"
-                    width: 30
+                    width: 50
                     height: width / sourceSize.width * sourceSize.height
                     anchors.right: parent.right
                     anchors.rightMargin: 20
@@ -203,7 +205,7 @@ Item {
                 }
                 Text {
                     text: hour
-                    font.pixelSize: 19
+                    font.pixelSize: 28
                     font.family: nesLowercaseFont.name
                     color: "#D9D9D9"
                     anchors.right: hourIcon.left

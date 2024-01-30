@@ -2,9 +2,8 @@ import QtQuick 2.15
 import QtQuick.Layouts 1.3
 
 Item {
-    width: 280
-    height: 70
-    anchors.bottom: body.bottom
+    width: 330
+    height: 90
 
     property string alertType
     property string alertIcon
@@ -47,11 +46,11 @@ Item {
                     width: 50
                     height: width
                     color: "transparent"
-                    Layout.margins: 5
+                    Layout.margins: 12
 
                     Image {
                         source: alertIcon
-                        width: 50
+                        width: 64
                         height: width / sourceSize.width * sourceSize.height
                         anchors.centerIn: parent
                     }
@@ -67,7 +66,7 @@ Item {
                             text: alertTitle
                             color: "#1E1E1E"
                             font.bold: true
-                            font.pixelSize: 14
+                            font.pixelSize: 20
                             font.family: nesLowercaseFont.name
                             Layout.alignment: Qt.AlignBottom
                         }
@@ -75,7 +74,7 @@ Item {
                             width: 50
                             text: alertDescription
                             color: "#1E1E1E"
-                            font.pixelSize: 11
+                            font.pixelSize: 16
                             wrapMode: Text.WrapAnywhere
                             Layout.alignment: Qt.AlignTop
                         }
