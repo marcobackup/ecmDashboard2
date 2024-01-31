@@ -32,9 +32,45 @@ Item {
         }
 
         Image {
+            id: goSettingsButtonIcon
             source: "qrc:/resource/image/resource/image/tripFlag.png"
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
+
+            Text {
+                anchors.centerIn: parent
+                color: "#fff"
+                text: "IMPOSTAZIONI"
+                font.family: nesLowercaseFont.name
+                font.pixelSize: 19
+            }
+
+            SequentialAnimation {
+                id: goSettingsButtonAnimation
+                running: false
+
+                PropertyAnimation {
+                    target: goSettingsButtonIcon
+                    property: "scale"
+                    from: 1.0
+                    to: 1.1
+                    duration: 30
+                }
+                PropertyAnimation {
+                    target: goSettingsButtonIcon
+                    property: "scale"
+                    from: 1.1
+                    to: 1.0
+                    duration: 30
+                }
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    goSettingsButtonAnimation.running = true
+                    mainComponentLoader.sourceComponent = settingsComponent
+                }
+            }
         }
     }
 }

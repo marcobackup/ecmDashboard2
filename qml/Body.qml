@@ -28,48 +28,67 @@ Item {
                 id: topBar
             }
 
-            Settings {
-                id: settings
-                anchors.top: topBar.bottom
-                anchors.bottom: bottomBar.top
+            Component {
+                id: settingsComponent
+
+                Settings {
+                    id: settings
+                    anchors.fill: parent
+                }
             }
-            /*
-            Main {
-                id: main
-                anchors.top: topBar.bottom
-                anchors.bottom: bottomBar.top
 
-                // alerts handling
-                Connections {
-                    target: alertQueueHandler
-                    function onAlertsQueueChanged() {
-                        var frontAlert = alertQueueHandler.getFrontAlert()
-                        if(frontAlert !== null) {
-                            var dynamicAlert = Qt.createQmlObject('import QtQuick 2.15; Alert {}', parent)
-                            dynamicAlert.anchors.right = parent.right
-                            dynamicAlert.anchors.bottom = parent.bottom
-                            dynamicAlert.anchors.bottomMargin = 68
-                            dynamicAlert.alertType = frontAlert.type
-                            dynamicAlert.alertIcon = frontAlert.icon
-                            dynamicAlert.alertTitle = frontAlert.title
-                            dynamicAlert.alertDescription = frontAlert.description
+            Component {
+                id: mainComponent
 
-                            var timer = Qt.createQmlObject('import QtQuick 2.15; Timer {}', parent);
-                            timer.interval = 10 * 1000;
-                            timer.repeat = false;
+                Main {
+                    id: main
+                    anchors.fill: parent
 
-                            timer.triggered.connect(function() {
-                                dynamicAlert.destroy();
-                                timer.destroy();
-                            });
+                    // alerts handling
+                    Connections {
+                        target: alertQueueHandler
+                        function onAlertsQueueChanged() {
+                            var frontAlert = alertQueueHandler.getFrontAlert()
+                            if(frontAlert !== null) {
+                                var dynamicAlert = Qt.createQmlObject('import QtQuick 2.15; Alert {}', parent)
+                                dynamicAlert.anchors.right = parent.right
+                                dynamicAlert.anchors.bottom = parent.bottom
+                                dynamicAlert.anchors.bottomMargin = 68
+                                dynamicAlert.alertType = frontAlert.type
+                                dynamicAlert.alertIcon = frontAlert.icon
+                                dynamicAlert.alertTitle = frontAlert.title
+                                dynamicAlert.alertDescription = frontAlert.description
 
-                            // start the timer
-                            timer.start()
+                                var timer = Qt.createQmlObject('import QtQuick 2.15; Timer {}', parent);
+                                timer.interval = 10 * 1000;
+                                timer.repeat = false;
+
+                                timer.triggered.connect(function() {
+                                    dynamicAlert.destroy();
+                                    timer.destroy();
+                                });
+
+                                // start the timer
+                                timer.start()
+                            }
                         }
                     }
                 }
             }
-            */
+
+            Loader {
+                id: mainComponentLoader
+                anchors.top: topBar.bottom
+                anchors.bottom: bottomBar.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                sourceComponent: {
+                    if(settingsController.settingsIsOpen)
+                        return settingsComponent
+                    else
+                        return mainComponent
+                }
+            }
 
             BottomBar {
                 id: bottomBar

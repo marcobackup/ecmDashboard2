@@ -1,11 +1,11 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import "diagnosys"
+import "diagnosys/vehicleLight"
 import "user"
 
 Item {
-    anchors.left: parent.left
-    anchors.right: parent.right
+    anchors.fill: parent
 
     Rectangle {
         anchors.fill: parent
@@ -16,21 +16,61 @@ Item {
             anchors.centerIn: parent
         }
 
-        SwipeView {
-            anchors.fill: parent
-            anchors.centerIn: parent
+        /*
+         *  user
+         */
+        Component {
+            id: userSwipeView
 
-            Menu {
-            }
+            SwipeView {
+                anchors.fill: parent
+                anchors.centerIn: parent
 
-            EnvironmentalLight {
-            }
+                System {
+                }
 
-            Radio {
+                EnvironmentalLight {
+                }
             }
         }
 
+        /*
+         *  diagnosys
+         */
+        Component {
+            id: diagnosysSwipeView
+
+            SwipeView {
+                anchors.fill: parent
+                anchors.centerIn: parent
+
+                System {
+                }
+
+                EnvironmentalLight {
+                }
+
+                Actuator {
+                }
+
+                InstrumentCluster {
+                }
+
+                VehicleLight {
+                }
+
+                Radio {
+                }
+            }
+        }
+
+        Loader {
+            sourceComponent: diagnosysSwipeView
+            anchors.fill: parent
+        }
+
         Image {
+            id: goDashboardButtonIcon
             source: "qrc:/resource/image/resource/image/tripFlag.png"
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
@@ -38,9 +78,36 @@ Item {
             Text {
                 anchors.centerIn: parent
                 color: "#fff"
-                text: "USER"
+                text: "DASHBOARD"
                 font.family: nesLowercaseFont.name
                 font.pixelSize: 19
+            }
+
+            SequentialAnimation {
+                id: goDashboardButtonAnimation
+                running: false
+
+                PropertyAnimation {
+                    target: goDashboardButtonIcon
+                    property: "scale"
+                    from: 1.0
+                    to: 1.1
+                    duration: 30
+                }
+                PropertyAnimation {
+                    target: goDashboardButtonIcon
+                    property: "scale"
+                    from: 1.1
+                    to: 1.0
+                    duration: 30
+                }
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    goDashboardButtonAnimation.running = true
+                    mainComponentLoader.sourceComponent = mainComponent
+                }
             }
         }
     }

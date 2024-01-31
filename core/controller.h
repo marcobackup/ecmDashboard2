@@ -7,6 +7,7 @@
 #include "core/controller/trip.h"
 #include "core/controller/topbar.h"
 #include "core/controller/bottombar.h"
+#include "core/controller/settings.h"
 
 class Controller {
 public:
@@ -14,13 +15,15 @@ public:
                CarParameter *carParameter,
                Trip *trip,
                TopBar *topBar,
-               BottomBar *bottomBar);
+               BottomBar *bottomBar,
+               Settings *settings);
 
     Gauge *gauge;
     CarParameter *carParameter;
     Trip *trip;
     TopBar *topBar;
     BottomBar *bottomBar;
+    Settings *settings;
 };
 
 #endif // CONTROLLER_H

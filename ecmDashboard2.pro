@@ -12,6 +12,7 @@ SOURCES += \
         core/controller.cpp \
         core/controller/bottombar.cpp \
         core/controller/carparameter.cpp \
+        core/controller/settings.cpp \
         core/controller/trip.cpp \
         core/controller/gauge.cpp \
         core/controller/topbar.cpp \
@@ -51,6 +52,7 @@ HEADERS += \
     core/controller/bottombar.h \
     core/controller/carparameter.h \
     core/controller/gauge.h \
+    core/controller/settings.h \
     core/controller/topbar.h \
     core/controller/trip.h \
     core/soundhandler.h \

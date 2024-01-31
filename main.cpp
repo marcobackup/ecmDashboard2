@@ -10,6 +10,7 @@
 #include "core/controller/trip.h"
 #include "core/controller/topbar.h"
 #include "core/controller/bottombar.h"
+#include "core/controller/settings.h"
 #include "core/soundhandler.h"
 
 int main(int argc, char *argv[])
@@ -31,8 +32,9 @@ int main(int argc, char *argv[])
     Trip tripController;
     TopBar topBarController;
     BottomBar bottomBarController;
+    Settings settingsController;
 
-    Controller controller(&gaugeController, &carParameterController, &tripController, &topBarController, &bottomBarController);
+    Controller controller(&gaugeController, &carParameterController, &tripController, &topBarController, &bottomBarController, &settingsController);
 
     // uart handler instance
     UartHandler uartHandler;
@@ -55,6 +57,7 @@ int main(int argc, char *argv[])
     context->setContextProperty("tripController", (QObject *) &tripController);
     context->setContextProperty("topBarController", (QObject *) &topBarController);
     context->setContextProperty("bottomBarController", (QObject *) &bottomBarController);
+    context->setContextProperty("settingsController", (QObject *) &settingsController);
     context->setContextProperty("alertQueueHandler", (QObject *) &alertQueueHandler);
 
     // listen to incoming uart data

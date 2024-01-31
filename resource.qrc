@@ -15,12 +15,13 @@
         <file>qml/main/carParameter/TurboPressure.qml</file>
         <file>qml/main/trip/KeyOnCounter.qml</file>
         <file>qml/settings/Settings.qml</file>
-        <file>qml/settings/user/Menu.qml</file>
+        <file>qml/settings/user/System.qml</file>
         <file>qml/settings/user/EnvironmentalLight.qml</file>
-        <file>qml/settings/diagnosys/VehicleLight.qml</file>
         <file>qml/settings/diagnosys/Radio.qml</file>
         <file>qml/settings/diagnosys/InstrumentCluster.qml</file>
         <file>qml/settings/diagnosys/Actuator.qml</file>
+        <file>qml/settings/diagnosys/vehicleLight/ButtonVehicleLight.qml</file>
+        <file>qml/settings/diagnosys/vehicleLight/VehicleLight.qml</file>
     </qresource>
     <qresource prefix="/resource/image">
         <file>resource/image/gauge.png</file>
@@ -61,6 +62,8 @@
         <file>resource/image/settings/radio/srcButton.png</file>
         <file>resource/image/settings/radio/upVolumeButton.png</file>
         <file>resource/image/settings/radio/volumeMaskButton.png</file>
+        <file>resource/image/settings/settingsCar.png</file>
+        <file>resource/image/settings/systemMenuMask.png</file>
     </qresource>
     <qresource prefix="/resource/font">
         <file>resource/font/NES_Lowercase.ttf</file>
