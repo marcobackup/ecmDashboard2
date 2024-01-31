@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import "main"
+import "settings"
 
 Item {
     anchors.fill: parent
@@ -27,6 +28,12 @@ Item {
                 id: topBar
             }
 
+            Settings {
+                id: settings
+                anchors.top: topBar.bottom
+                anchors.bottom: bottomBar.top
+            }
+            /*
             Main {
                 id: main
                 anchors.top: topBar.bottom
@@ -62,6 +69,7 @@ Item {
                     }
                 }
             }
+            */
 
             BottomBar {
                 id: bottomBar
