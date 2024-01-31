@@ -2,10 +2,7 @@ import QtQuick 2.15
 import QtQuick.Layouts 1.3
 
 Item {
-    width: 190
-    height: width
     y: 20
-    anchors.horizontalCenter: parent.horizontalCenter
 
     property real rpm: gaugeController.rpm
 
@@ -13,7 +10,7 @@ Item {
         id: rpmText
         text: rpm
         font.family: nesLowercaseFont.name
-        font.pixelSize: 100
+        font.pixelSize: 80
         font.bold: true
         color: "#d9d9d9"
         anchors.horizontalCenter: parent.horizontalCenter

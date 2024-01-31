@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.15
 import "gauge"
 
 Item {
@@ -9,7 +10,17 @@ Item {
         anchors.fill: parent
         color: "transparent"
 
-        Speed {
+        SwipeView {
+            anchors.left: parent.lelft
+            anchors.right: parent.right
+            height: 190
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            Speed {
+            }
+
+            Rpm {
+            }
         }
 
         CarParameter {

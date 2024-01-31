@@ -2,10 +2,7 @@ import QtQuick 2.15
 import QtQuick.Layouts 1.3
 
 Item {
-    width: 190
-    height: width
     y: 20
-    anchors.horizontalCenter: parent.horizontalCenter
 
     property real speed: gaugeController.speed
 

@@ -65,7 +65,12 @@ Item {
         }
 
         Loader {
-            sourceComponent: diagnosysSwipeView
+            sourceComponent: {
+                if(settingsController.settingsDiagnosysOpen)
+                    return diagnosysSwipeView
+                else
+                    return userSwipeView
+            }
             anchors.fill: parent
         }
 
