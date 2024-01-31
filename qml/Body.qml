@@ -5,7 +5,7 @@ import "settings"
 Item {
     anchors.fill: parent
 
-    property int theme: 0
+    property int theme: settingsController.theme
 
     Rectangle {
         anchors.fill: parent

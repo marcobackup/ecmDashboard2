@@ -5,6 +5,9 @@ Settings::Settings(QObject *parent)
     , m_settingsIsOpen(false)
     , m_settingsDiagnosysOpen(false)
     , m_settingsViewId(0)
+    , m_theme(0)
+    , m_language(0)
+    , m_audioStatus(true)
 {
 }
 
@@ -45,4 +48,43 @@ void Settings::setSettingsViewId(int newSettingsViewId)
         return;
     m_settingsViewId = newSettingsViewId;
     emit settingsViewIdChanged();
+}
+
+int Settings::theme() const
+{
+    return m_theme;
+}
+
+void Settings::setTheme(int newTheme)
+{
+    if (m_theme == newTheme)
+        return;
+    m_theme = newTheme;
+    emit themeChanged();
+}
+
+int Settings::language() const
+{
+    return m_language;
+}
+
+void Settings::setLanguage(int newLanguage)
+{
+    if (m_language == newLanguage)
+        return;
+    m_language = newLanguage;
+    emit languageChanged();
+}
+
+bool Settings::audioStatus() const
+{
+    return m_audioStatus;
+}
+
+void Settings::setAudioStatus(bool newAudioStatus)
+{
+    if (m_audioStatus == newAudioStatus)
+        return;
+    m_audioStatus = newAudioStatus;
+    emit audioStatusChanged();
 }

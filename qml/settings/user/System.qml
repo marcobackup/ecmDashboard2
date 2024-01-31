@@ -91,6 +91,12 @@ Item {
 
     property ListModel aboutMenu: ListModel {
         ListElement {
+            name: "Grafica e firmware\nsviluppato da"
+        }
+        ListElement {
+            name: "marcosgro03@gmail.com"
+        }
+        ListElement {
             name: "TORNA INDIETRO"
             value: "go_home"
         }
@@ -127,6 +133,62 @@ Item {
                         color: "#fff"
                         font.family: nesLowercaseFont.name
                         font.pixelSize: 18
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            switch(model.value) {
+                                case "home_theme":
+                                    menuList.model = themeMenu
+                                    break
+                                case "theme_darkred":
+                                    settingsController.theme = 0
+                                    break
+                                case "theme_darkblue":
+                                    settingsController.theme = 1
+                                    break
+                                case "theme_gold":
+                                    settingsController.theme = 2
+                                    break
+                                case "theme_silver":
+                                    settingsController.theme = 3
+                                    break
+                                case "home_language":
+                                    menuList.model = languageMenu
+                                    break
+                                case "language_italian":
+                                    settingsController.language = 0
+                                    break
+                                case "language_englishus":
+                                    settingsController.language = 1
+                                    break
+                                case "language_englishuk":
+                                    settingsController.language = 2
+                                    break
+                                case "language_spanish":
+                                    settingsController.language = 3
+                                    break
+                                case "language_french":
+                                    settingsController.language = 4
+                                    break
+                                case "home_audio":
+                                    menuList.model = audioMenu
+                                    break
+                                case "audio_on":
+                                    settingsController.audioStatus = true
+                                    break
+                                case "audio_off":
+                                    settingsController.audioStatus = false
+                                    break
+                                case "home_about":
+                                    menuList.model = aboutMenu
+                                    break
+                                case "go_home":
+                                    menuList.model = homeMenu
+                                    break
+                            }
+                        }
                     }
                 }
             }
