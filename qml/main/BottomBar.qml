@@ -197,7 +197,7 @@ Item {
                     Image {
                         id: bonnetIcon
                         source: "qrc:/resource/image/resource/image/indicatorLight/bonnet.png"
-                        width: 45
+                        width: 43
                         height: width / sourceSize.width * sourceSize.height
                         anchors.centerIn: parent
                     }

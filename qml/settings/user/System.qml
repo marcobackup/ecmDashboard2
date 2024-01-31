@@ -119,14 +119,14 @@ Item {
                     id: menuItem
                     width: parent.width
                     height: menuList.height / 2
-                    color: index === menuList.currentIndex ? "#121111" : "#161517"
+                    color: "#161517"
 
                     Text {
                         anchors.centerIn: parent
                         text: model.name
                         color: "#fff"
                         font.family: nesLowercaseFont.name
-                        font.pixelSize: 16
+                        font.pixelSize: 18
                     }
                 }
             }

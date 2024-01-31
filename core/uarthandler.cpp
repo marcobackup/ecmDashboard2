@@ -41,9 +41,6 @@ void UartHandler::handleRxMessage(const QByteArray &data) {
             rxMsg.arbitration_id = match.captured(1).toInt();
             rxMsg.dlc = match.captured(2).toInt();
 
-            if(rxMsg.arbitration_id == 0x6214000)
-                qDebug() << rxMsg.dlc << dataValues;
-
             // QStringList to uint8_t array
             QVector<uint8_t> uint8Array;
             for (const QString& hexString : dataValues) {
