@@ -19,9 +19,10 @@
         <file>qml/settings/user/EnvironmentalLight.qml</file>
         <file>qml/settings/diagnosys/Radio.qml</file>
         <file>qml/settings/diagnosys/InstrumentCluster.qml</file>
-        <file>qml/settings/diagnosys/Actuator.qml</file>
         <file>qml/settings/diagnosys/vehicleLight/ButtonVehicleLight.qml</file>
         <file>qml/settings/diagnosys/vehicleLight/VehicleLight.qml</file>
+        <file>qml/settings/diagnosys/actuator/ButtonActuator.qml</file>
+        <file>qml/settings/diagnosys/actuator/Actuator.qml</file>
     </qresource>
     <qresource prefix="/resource/image">
         <file>resource/image/gauge.png</file>

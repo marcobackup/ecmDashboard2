@@ -5,6 +5,10 @@ import "qml"
 Window {
     width: 800
     height: 480
+    minimumWidth: width
+    minimumHeight: height
+    maximumWidth: width
+    maximumHeight: height
     visible: true
     title: qsTr("ECM dashboard")
 
@@ -15,9 +19,5 @@ Window {
 
     Body {
         id: body
-    }
-
-    Component.onCompleted: {
-        alertQueueHandler.addWarningAlert("qrc:/resource/image/resource/image/weather/fullSunWeatherIcon.png", "WELCOME", "Hey Marco, welcome to ECM");
     }
 }
