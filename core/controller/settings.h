@@ -13,6 +13,10 @@ class Settings : public QObject
     Q_PROPERTY(int theme READ theme WRITE setTheme NOTIFY themeChanged)
     Q_PROPERTY(int language READ language WRITE setLanguage NOTIFY languageChanged)
     Q_PROPERTY(bool audioStatus READ audioStatus WRITE setAudioStatus NOTIFY audioStatusChanged)
+
+    Q_PROPERTY(int ambientLightSource READ ambientLightSource WRITE setAmbientLightSource NOTIFY ambientLightSourceChanged)
+    Q_PROPERTY(int ambientLightLRSeatLevel READ ambientLightLRSeatLevel WRITE setAmbientLightLRSeatLevel NOTIFY ambientLightLRSeatLevelChanged)
+    Q_PROPERTY(int ambientLightRRSeatLevel READ ambientLightRRSeatLevel WRITE setAmbientLightRRSeatLevel NOTIFY ambientLightRRSeatLevelChanged)
 public:
     explicit Settings(QObject *parent = nullptr);
 
@@ -34,6 +38,15 @@ public:
     bool audioStatus() const;
     void setAudioStatus(bool newAudioStatus);
 
+    int ambientLightSource() const;
+    void setAmbientLightSource(int newAmbientLightSource);
+
+    int ambientLightLRSeatLevel() const;
+    void setAmbientLightLRSeatLevel(int newAmbientLightLRSeatLevel);
+
+    int ambientLightRRSeatLevel() const;
+    void setAmbientLightRRSeatLevel(int newAmbientLightRRSeatLevel);
+
 signals:
 
     void settingsIsOpenChanged();
@@ -47,6 +60,12 @@ signals:
 
     void audioStatusChanged();
 
+    void ambientLightSourceChanged();
+
+    void ambientLightLRSeatLevelChanged();
+
+    void ambientLightRRSeatLevelChanged();
+
 private:
     bool m_settingsIsOpen;
     bool m_settingsDiagnosysOpen;
@@ -54,6 +73,9 @@ private:
     int m_theme;
     int m_language;
     bool m_audioStatus;
+    int m_ambientLightSource;
+    int m_ambientLightLRSeatLevel;
+    int m_ambientLightRRSeatLevel;
 };
 
 #endif // SETTINGS_H

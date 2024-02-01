@@ -1,4 +1,5 @@
 QT += quick
+QT += widgets
 QT += serialport
 QT += multimedia
 

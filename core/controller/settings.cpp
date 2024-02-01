@@ -8,6 +8,9 @@ Settings::Settings(QObject *parent)
     , m_theme(0)
     , m_language(0)
     , m_audioStatus(true)
+    , m_ambientLightSource(0)
+    , m_ambientLightLRSeatLevel(255)
+    , m_ambientLightRRSeatLevel(255)
 {
 }
 
@@ -87,4 +90,43 @@ void Settings::setAudioStatus(bool newAudioStatus)
         return;
     m_audioStatus = newAudioStatus;
     emit audioStatusChanged();
+}
+
+int Settings::ambientLightSource() const
+{
+    return m_ambientLightSource;
+}
+
+void Settings::setAmbientLightSource(int newAmbientLightSource)
+{
+    if (m_ambientLightSource == newAmbientLightSource)
+        return;
+    m_ambientLightSource = newAmbientLightSource;
+    emit ambientLightSourceChanged();
+}
+
+int Settings::ambientLightLRSeatLevel() const
+{
+    return m_ambientLightLRSeatLevel;
+}
+
+void Settings::setAmbientLightLRSeatLevel(int newAmbientLightLRSeatLevel)
+{
+    if (m_ambientLightLRSeatLevel == newAmbientLightLRSeatLevel)
+        return;
+    m_ambientLightLRSeatLevel = newAmbientLightLRSeatLevel;
+    emit ambientLightLRSeatLevelChanged();
+}
+
+int Settings::ambientLightRRSeatLevel() const
+{
+    return m_ambientLightRRSeatLevel;
+}
+
+void Settings::setAmbientLightRRSeatLevel(int newAmbientLightRRSeatLevel)
+{
+    if (m_ambientLightRRSeatLevel == newAmbientLightRRSeatLevel)
+        return;
+    m_ambientLightRRSeatLevel = newAmbientLightRRSeatLevel;
+    emit ambientLightRRSeatLevelChanged();
 }

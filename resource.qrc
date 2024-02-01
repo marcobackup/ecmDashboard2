@@ -65,6 +65,7 @@
         <file>resource/image/settings/radio/volumeMaskButton.png</file>
         <file>resource/image/settings/settingsCar.png</file>
         <file>resource/image/settings/systemMenuMask.png</file>
+        <file>resource/image/settings/seat.png</file>
     </qresource>
     <qresource prefix="/resource/font">
         <file>resource/font/NES_Lowercase.ttf</file>
