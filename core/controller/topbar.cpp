@@ -1,7 +1,9 @@
 #include "topbar.h"
+#include "core/brightness.h"
 
-TopBar::TopBar(QObject *parent)
+TopBar::TopBar(Brightness *brightnessHandler, QObject *parent)
     : QObject{parent}
+    , brightnessHandler(brightnessHandler)
     , m_leftArrowStatus(false)
     , m_rightArrowStatus(false)
     , m_lowBeamLightStatus(false)
@@ -46,6 +48,10 @@ void TopBar::setLowBeamLightStatus(bool newLowBeamLightStatus)
 {
     if (m_lowBeamLightStatus == newLowBeamLightStatus)
         return;
+    if(newLowBeamLightStatus)
+        brightnessHandler.setBrightness(125);
+    else
+        brightnessHandler.setBrightness(255);
     m_lowBeamLightStatus = newLowBeamLightStatus;
     emit lowBeamLightStatusChanged();
 }

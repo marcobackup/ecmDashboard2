@@ -17,13 +17,9 @@ Brightness::~Brightness()
 }
 
 bool Brightness::openFile(QFile &file) {
-    if(!file.open(QIODevice::ReadWrite)) {
-        qDebug() << "Not opened";
+    if(!file.open(QIODevice::ReadWrite))
         return false;
-    } else {
-        qDebug() << "Opened";
-        return true;
-    }
+    return true;
 }
 
 QByteArray Brightness::getBrightness() {
@@ -33,19 +29,25 @@ QByteArray Brightness::getBrightness() {
 }
 
 void Brightness::setBrightness(int brightness) {
+    QByteArray data = QByteArray::number(brightness);
     if(!Brightness::openFile(brightnessFile))
         return;
-    brightnessFile.write((char *) brightness);
+    brightnessFile.write(data.constData(), data.size());
+    brightnessFile.close();
 }
 
 void Brightness::powerOff() {
+    QByteArray data = QByteArray::number(1);
     if(!Brightness::openFile(brightnessFile))
         return;
-    brightnessFile.write((char *) 1);
+    brightnessFile.write(data.constData(), data.size());
+    brightnessFile.close();
 }
 
 void Brightness::powerOn() {
+    QByteArray data = QByteArray::number(0);
     if(!Brightness::openFile(brightnessFile))
         return;
-    brightnessFile.write((char *) 0);
+    brightnessFile.write(data.constData(), data.size());
+    brightnessFile.close();
 }

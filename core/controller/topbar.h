@@ -2,6 +2,7 @@
 #define TOPBAR_H
 
 #include <QObject>
+#include "core/brightness.h"
 
 class TopBar : public QObject
 {
@@ -13,7 +14,7 @@ class TopBar : public QObject
     Q_PROPERTY(float environmentalTemperature READ environmentalTemperature WRITE setEnvironmentalTemperature NOTIFY environmentalTemperatureChanged)
     Q_PROPERTY(QString hour READ hour WRITE setHour NOTIFY hourChanged)
 public:
-    explicit TopBar(QObject *parent = nullptr);
+    explicit TopBar(Brightness *brightnessHandler, QObject *parent = nullptr);
 
     bool leftArrowStatus() const;
     void setLeftArrowStatus(bool newLeftArrowStatus);
@@ -47,6 +48,7 @@ signals:
     void hourChanged();
 
 private:
+    Brightness brightnessHandler;
     bool m_leftArrowStatus;
     bool m_rightArrowStatus;
     bool m_lowBeamLightStatus;
