@@ -1,4 +1,5 @@
 #include "brightness.h"
+#include <QDebug>
 
 Brightness::Brightness(QObject *parent)
     : QObject{parent}
@@ -16,9 +17,13 @@ Brightness::~Brightness()
 }
 
 bool Brightness::openFile(QFile &file) {
-    if(file.open(QIODevice::ReadWrite))
+    if(!file.open(QIODevice::ReadWrite)) {
+        qDebug() << "Not opened";
         return false;
-    return true;
+    } else {
+        qDebug() << "Opened";
+        return true;
+    }
 }
 
 QByteArray Brightness::getBrightness() {
