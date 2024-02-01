@@ -12,6 +12,7 @@
 #include "core/controller/bottombar.h"
 #include "core/controller/settings.h"
 #include "core/soundhandler.h"
+#include "core/brightness.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +20,9 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
     QGuiApplication app(argc, argv);
+
+    // display brightness handler
+    Brightness brightnessHandler;
 
     // sound handler
     SoundHandler soundHandler;
@@ -64,6 +68,8 @@ int main(int argc, char *argv[])
     QObject::connect(&uartHandler, &UartHandler::dataReceived, [&messageHandler](UartHandler::rxMessage data) {
         messageHandler.handleMessageData(data);
     });
+
+    brightnessHandler.setBrightness(100);
 
     // start up chime effect
     soundHandler.playWarningChimeSoundEffect(2);

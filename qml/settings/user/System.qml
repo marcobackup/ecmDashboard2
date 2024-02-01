@@ -5,6 +5,8 @@ import QtGraphicalEffects 1.15
 Item {
     y: 115
 
+    property int index: 0
+
     property ListModel homeMenu: ListModel {
         ListElement {
             name: "TEMA"
@@ -76,12 +78,12 @@ Item {
 
     property ListModel audioMenu: ListModel {
         ListElement {
-            name: "ATTIVO"
-            value: "audio_on"
-        }
-        ListElement {
             name: "DISATTIVO"
             value: "audio_off"
+        }
+        ListElement {
+            name: "ATTIVO"
+            value: "audio_on"
         }
         ListElement {
             name: "TORNA INDIETRO"
@@ -112,7 +114,7 @@ Item {
             height: parent.height / 1.5
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            currentIndex: 0
+            currentIndex: index
             clip: true
 
             model: homeMenu
@@ -125,7 +127,7 @@ Item {
                     id: menuItem
                     width: parent.width
                     height: menuList.height / 2
-                    color: "#161517"
+                    color: index === menuList.currentIndex ? "#000000" : "#121111"
 
                     Text {
                         anchors.centerIn: parent
@@ -141,45 +143,59 @@ Item {
                             switch(model.value) {
                                 case "home_theme":
                                     menuList.model = themeMenu
+                                    index = settingsController.theme
                                     break
                                 case "theme_darkred":
                                     settingsController.theme = 0
+                                    index = settingsController.theme
                                     break
                                 case "theme_darkblue":
                                     settingsController.theme = 1
+                                    index = settingsController.theme
                                     break
                                 case "theme_gold":
                                     settingsController.theme = 2
+                                    index = settingsController.theme
                                     break
                                 case "theme_silver":
                                     settingsController.theme = 3
+                                    index = settingsController.theme
                                     break
                                 case "home_language":
                                     menuList.model = languageMenu
+                                    index = settingsController.language
                                     break
                                 case "language_italian":
                                     settingsController.language = 0
+                                    index = settingsController.language
                                     break
                                 case "language_englishus":
                                     settingsController.language = 1
+                                    index = settingsController.language
                                     break
                                 case "language_englishuk":
                                     settingsController.language = 2
+                                    index = settingsController.language
                                     break
                                 case "language_spanish":
                                     settingsController.language = 3
+                                    index = settingsController.language
                                     break
                                 case "language_french":
                                     settingsController.language = 4
+                                    index = settingsController.language
                                     break
                                 case "home_audio":
                                     menuList.model = audioMenu
+                                    index = settingsController.audioStatus
                                     break
                                 case "audio_on":
                                     settingsController.audioStatus = true
+                                    index = 1
                                     break
                                 case "audio_off":
                                     settingsController.audioStatus = false
+                                    index = 0
                                     break
                                 case "home_about":
                                     menuList.model = aboutMenu

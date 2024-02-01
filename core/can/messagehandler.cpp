@@ -182,6 +182,12 @@ void MessageHandler::handleMessageData(UartHandler::rxMessage message) {
     if(message.arbitration_id == 0x6214000) {
         statusBcmResponse = statusBcm.deserialize(message.data);
 
+        // handbrake status
+        if(statusBcmResponse.handBrakeSts == STATUS_BCM_handBrakeSts_ON_CHOICE)
+            controller->bottomBar->setHandBrakeStatus(true);
+        else
+            controller->bottomBar->setHandBrakeStatus(false);
+
         // bonnet status
         if(statusBcmResponse.bonnetSts == STATUS_BCM_bonnetSts_Open_CHOICE)
             controller->bottomBar->setBonnetStatus(true);

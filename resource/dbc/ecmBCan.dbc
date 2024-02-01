@@ -40,11 +40,11 @@ VAL_TABLE_ language_table 4 "french" 3 "spanish" 2 "english uk" 1 "english us" 0
 VAL_TABLE_ theme_table 3 "silver theme" 2 "gold theme" 1 "darkblue theme" 0 "darkred theme" ;
 
 
-BO_ 2316763138 ENVIRONMENT_LIGHT: 2 Vector__XXX
+BO_ 2316763138 ENVIRONMENT_LIGHT: 3 Vector__XXX
+ SG_ right_light_level : 23|8@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ left_light_level : 7|8@0+ (1,0) [0|0] "" Vector__XXX
  SG_ right_light_source : 13|2@0+ (1,0) [0|0] "" Vector__XXX
  SG_ left_light_source : 15|2@0+ (1,0) [0|0] "" Vector__XXX
- SG_ right_light_level : 3|8@0+ (1,0) [0|255] "" Vector__XXX
- SG_ left_light_level : 7|8@0+ (1,0) [0|255] "" Vector__XXX
 
 BO_ 2316763137 ECM_STATUS: 3 ECM
  SG_ audio_status : 23|8@0+ (1,0) [0|0] "" Vector__XXX
