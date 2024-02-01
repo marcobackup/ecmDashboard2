@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     Gauge gaugeController;
     CarParameter carParameterController;
     Trip tripController;
-    TopBar topBarController;
+    TopBar topBarController(&brightnessHandler);
     BottomBar bottomBarController;
     Settings settingsController;
 
