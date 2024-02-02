@@ -42,7 +42,7 @@ Window {
     Timer {
         interval: 750
         onTriggered: {
-            appLoader.sourceComponent = loadingScreenComponent
+            appLoader.sourceComponent = bodyComponent
         }
         running: true
         repeat: false
