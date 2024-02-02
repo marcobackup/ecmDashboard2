@@ -20,16 +20,8 @@ Window {
     Component {
         id: loadingScreenComponent
 
-        Rectangle {
-            anchors.fill: parent
-            color: "#000000"
-
-            Image {
-                anchors.centerIn: parent
-                width: 180
-                height: width
-                source: "qrc:/resource/image/resource/image/fiatLogo.png"
-            }
+        LoadingScreen {
+            id: loadingScreen
         }
     }
 
@@ -44,9 +36,18 @@ Window {
     Loader {
         id: appLoader
         anchors.fill: parent
-        sourceComponent: bodyComponent
+        sourceComponent: loadingScreenComponent
     }
 
+    Timer {
+        interval: 750
+        onTriggered: {
+            appLoader.sourceComponent = loadingScreen
+        }
+        running: true
+        repeat: false
+    }
+    /*
     Connections {
         target: settingsController
 
@@ -54,4 +55,5 @@ Window {
             appLoader.sourceComponent = bodyComponent
         }
     }
+    */
 }
