@@ -30,6 +30,7 @@ void UartHandler::handleRxMessage(const QByteArray &data) {
     QRegularExpressionMatch match;
     QStringList lines = dataString.split("\n", Qt::SkipEmptyParts);
     rxMessage rxMsg;
+    settingsEcmStatusStruct settingsEcmStatusConfig;
 
     for (const QString &line : lines) {
         QRegularExpression regex("(\\d+)#(\\d+)#(.+)");
@@ -50,8 +51,25 @@ void UartHandler::handleRxMessage(const QByteArray &data) {
             }
             rxMsg.data = uint8Array.data();
             emit dataReceived(rxMsg);
+        } else {
+            QRegularExpression regexSettings("^eeprom#ecmStatus#read#(\\d+),(\\d+),(\\d+)");
+            match = regexSettings.match(line);
+
+            if(match.hasMatch()) {
+                settingsEcmStatusConfig.theme = match.captured(1).toInt();
+                settingsEcmStatusConfig.language = match.captured(2).toInt();
+                settingsEcmStatusConfig.audioStatus = match.captured(3).toInt();
+                emit settingsEcmStatusReceived(settingsEcmStatusConfig);
+            }
         }
     }
+}
+
+void UartHandler::send(QByteArray payload) {
+    qDebug() << payload;
+    quint64 bytesWritten = serialPort->write(payload);
+    if (bytesWritten < 0)
+        qWarning() << "Error during bytes writing: " << serialPort->errorString();
 }
 
 void UartHandler::setupSerialPort() {

@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.15
+import QtGraphicalEffects 1.15
 
 Item {
 
@@ -26,11 +27,12 @@ Item {
                 source: "qrc:/resource/image/resource/image/settings/seat.png"
 
                 Rectangle {
-                    id: ambientLightLRSeatRect
-                    width: parent.width
+                    id: ambientLightLRSeatRepr
+                    width: parent.width - 30
                     height: 40
                     color: "#fff"
                     anchors.bottom: parent.bottom
+                    anchors.horizontalCenter: parent.horizontalCenter
                     radius: 360
                     opacity: map(settingsController.ambientLightLRSeatLevel, 0, 255, 0, 1)
                 }
@@ -62,6 +64,7 @@ Item {
             }
             ComboBox {
                 id: ambientLightSource
+                width: 200
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
                 anchors.topMargin: 50
@@ -71,7 +74,7 @@ Item {
                         text: "Veicolo"
                     }
                     ListElement {
-                        text: "Personalizzato"
+                        text: "Regolazione"
                     }
                 }
 
@@ -90,10 +93,12 @@ Item {
                 source: "qrc:/resource/image/resource/image/settings/seat.png"
 
                 Rectangle {
-                    width: parent.width
+                    id: ambientLightRRSeatRepr
+                    width: parent.width - 30
                     height: 40
                     color: "#fff"
                     anchors.bottom: parent.bottom
+                    anchors.horizontalCenter: parent.horizontalCenter
                     radius: 360
                     opacity: map(settingsController.ambientLightRRSeatLevel, 0, 255, 0, 1)
                 }
@@ -101,15 +106,9 @@ Item {
             Slider {
                 id: ambientLightRRSeatSlider
                 Layout.alignment: Qt.AlignHCenter
-                enabled: {
-                    if(ambientLightSource == 1)
-                        return true
-                    else
-                        return false
-                }
-
+                enabled: true
                 onValueChanged: {
-                    settingsController.ambientLightRRSeatLevel = map(ambientLightLRSeatSlider.value, 0, 1, 0, 255)
+                    settingsController.ambientLightRRSeatLevel = map(ambientLightRRSeatSlider.value, 0, 1, 0, 255)
                 }
             }
         }

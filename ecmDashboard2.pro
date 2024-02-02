@@ -18,6 +18,7 @@ SOURCES += \
         core/controller/trip.cpp \
         core/controller/gauge.cpp \
         core/controller/topbar.cpp \
+        core/senderhandler.cpp \
         core/soundhandler.cpp \
         core/uarthandler.cpp \
         core/can/deserializer.cpp \
@@ -33,6 +34,8 @@ SOURCES += \
         core/can/message/statusBEps.cpp \
         core/can/message/statusSdm.cpp \
         core/can/message/tripAB.cpp \
+        core/can/message/environmentLight.cpp \
+        core/can/message/ecmStatus.cpp \
         main.cpp
 
 RESOURCES += resource.qrc
@@ -58,5 +61,6 @@ HEADERS += \
     core/controller/settings.h \
     core/controller/topbar.h \
     core/controller/trip.h \
+    core/senderhandler.h \
     core/soundhandler.h \
     core/uarthandler.h

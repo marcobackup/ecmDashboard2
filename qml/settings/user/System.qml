@@ -126,7 +126,7 @@ Item {
                     id: menuItem
                     width: parent.width
                     height: menuList.height / 2
-                    color: index === menuList.currentIndex ? "#000000" : "#121111"
+                    color: index === menuList.currentIndex ? "#121111" : "#161517"
 
                     Text {
                         anchors.centerIn: parent

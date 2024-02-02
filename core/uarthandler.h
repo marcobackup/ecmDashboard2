@@ -15,12 +15,20 @@ public:
         int dlc;
         uint8_t *data;
     } rxMessage;
+    typedef struct settingsEcmStatusStruct {
+        unsigned int theme;
+        unsigned int language;
+        unsigned int audioStatus;
+    } settingsEcmStatusStruct;
+
+    void send(QByteArray payload);
 
 private slots:
     void handleReadyRead();
 
 signals:
     void dataReceived(UartHandler::rxMessage data);
+    void settingsEcmStatusReceived(UartHandler::settingsEcmStatusStruct settingsReceived);
 
 private:
     QSerialPort *serialPort;

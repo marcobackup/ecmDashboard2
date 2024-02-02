@@ -4,6 +4,7 @@
 #include "core/alertqueue.h"
 #include "core/uarthandler.h"
 #include "core/can/messagehandler.h"
+#include "core/senderhandler.h"
 #include "core/controller.h"
 #include "core/controller/gauge.h"
 #include "core/controller/carparameter.h"
@@ -43,6 +44,9 @@ int main(int argc, char *argv[])
     // uart handler instance
     UartHandler uartHandler;
 
+    // sender handler instance
+    SenderHandler senderHandler(&uartHandler, &settingsController);
+
     // message handler instance
     MessageHandler messageHandler(&controller, &alertQueueHandler);
 
@@ -69,12 +73,24 @@ int main(int argc, char *argv[])
         messageHandler.handleMessageData(data);
     });
 
-    brightnessHandler.setBrightness(100);
+    // set brightness to max level
+    brightnessHandler.setBrightness(255);
 
-    // start up chime effect
-    soundHandler.playWarningChimeSoundEffect(2);
+    bool uiLoaded = false;
 
-    engine.load(url);
+    // listen to incoming settings ecm status data
+    QObject::connect(&uartHandler, &UartHandler::settingsEcmStatusReceived, [&settingsController, &soundHandler, &url, &uiLoaded, &engine](UartHandler::settingsEcmStatusStruct data) {
+        settingsController.setTheme(data.theme);
+        if(!uiLoaded) {
+            uiLoaded = true;
+
+            // start up chime effect
+            soundHandler.playWarningChimeSoundEffect(2);
+            // start UI
+            engine.load(url);
+        }
+    });
+
 
     return app.exec();
 }
