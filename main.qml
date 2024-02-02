@@ -44,7 +44,7 @@ Window {
     Loader {
         id: appLoader
         anchors.fill: parent
-        sourceComponent: loadingScreenComponent
+        sourceComponent: bodyComponent
     }
 
     Connections {

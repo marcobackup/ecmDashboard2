@@ -109,7 +109,7 @@ Item {
 
         ListView {
             id: menuList
-            width: parent.width / 1.5
+            width: parent.width
             height: parent.height / 1.5
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
