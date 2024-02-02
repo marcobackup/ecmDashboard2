@@ -4,7 +4,9 @@ import QtGraphicalEffects 1.15
 Item {
     y: 115
 
-    property int index: 0
+    property int theme: settingsController.theme
+    property int language: settingsController.language
+    property int audioStatus: settingsController.audioStatus
 
     property ListModel homeMenu: ListModel {
         ListElement {
@@ -113,10 +115,12 @@ Item {
             height: parent.height / 1.5
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            currentIndex: index
+            currentIndex: -1
             clip: true
 
             model: homeMenu
+
+            onModelChanged: currentIndex = -1
 
             delegate: Item {
                 width: menuList.width
@@ -139,69 +143,27 @@ Item {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            switch(model.value) {
-                                case "home_theme":
+                            if(!model.value.includes("home")) {
+                                menuList.currentIndex = index
+                                if(model.value.includes("theme"))
+                                    settingsController.theme = index
+                                if(model.value.includes("language"))
+                                    settingsController.language = index
+                                if(model.value.includes("audio"))
+                                    settingsController.audioStatus = index
+                            } else {
+                                if(model.value.includes("theme")) {
                                     menuList.model = themeMenu
-                                    index = settingsController.theme
-                                    break
-                                case "theme_darkred":
-                                    settingsController.theme = 0
-                                    index = settingsController.theme
-                                    break
-                                case "theme_darkblue":
-                                    settingsController.theme = 1
-                                    index = settingsController.theme
-                                    break
-                                case "theme_gold":
-                                    settingsController.theme = 2
-                                    index = settingsController.theme
-                                    break
-                                case "theme_silver":
-                                    settingsController.theme = 3
-                                    index = settingsController.theme
-                                    break
-                                case "home_language":
+                                }
+                                if(model.value.includes("language")) {
                                     menuList.model = languageMenu
-                                    index = settingsController.language
-                                    break
-                                case "language_italian":
-                                    settingsController.language = 0
-                                    index = settingsController.language
-                                    break
-                                case "language_englishus":
-                                    settingsController.language = 1
-                                    index = settingsController.language
-                                    break
-                                case "language_englishuk":
-                                    settingsController.language = 2
-                                    index = settingsController.language
-                                    break
-                                case "language_spanish":
-                                    settingsController.language = 3
-                                    index = settingsController.language
-                                    break
-                                case "language_french":
-                                    settingsController.language = 4
-                                    index = settingsController.language
-                                    break
-                                case "home_audio":
+                                }
+                                if(model.value.includes("audio")) {
                                     menuList.model = audioMenu
-                                    index = settingsController.audioStatus
-                                    break
-                                case "audio_on":
-                                    settingsController.audioStatus = true
-                                    index = 1
-                                    break
-                                case "audio_off":
-                                    settingsController.audioStatus = false
-                                    index = 0
-                                    break
-                                case "home_about":
-                                    menuList.model = aboutMenu
-                                    break
-                                case "go_home":
+                                }
+                                if(model.value.includes("go")) {
                                     menuList.model = homeMenu
-                                    break
+                                }
                             }
                         }
                     }

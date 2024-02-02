@@ -22,7 +22,6 @@ Item {
                     Image {
                         source: "qrc:/resource/image/resource/image/fiatLogo.png"
                     }
-
                     Image {
                         source: "qrc:/resource/image/resource/image/qtLogo.png"
                     }
@@ -38,7 +37,6 @@ Item {
                 Text {
                     text: "ECM Dashboard | marcosgro03@gmail.com | 2024"
                     font.pixelSize: 18
-                    font.bold: true
                     color: "#d9d9d9"
                     anchors.horizontalCenter: parent.horizontalCenter
                 }

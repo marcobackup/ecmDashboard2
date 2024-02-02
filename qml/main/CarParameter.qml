@@ -10,7 +10,7 @@ Item {
     property bool lowFuelLevelWarningStatus: carParameterController.lowFuelLevelWarningStatus
     property real coolantTemperature: carParameterController.coolantTemperature
     property bool highCoolantTemperatureWarningStatus: carParameterController.highCoolantTemperatureWarningStatus
-    property real turboPressure: carParameterController.turboPressure
+    property real turboPressure: carParameterController.boostPressure
     property real batteryVoltage: carParameterController.batteryVoltage
 
     RowLayout {
@@ -29,7 +29,8 @@ Item {
                     source: "qrc:/resource/image/resource/image/carParameter/fuelLevelIcon.png"
                     width: 60
                     height: width / sourceSize.width * sourceSize.height
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    //anchors.horizontalCenter: parent.horizontalCenter
+                    Layout.alignment: Qt.AlignHCenter
                 }
                 Text {
                     color: "#fff"
@@ -37,7 +38,8 @@ Item {
                     font.family: nesLowercaseFont.name
                     font.bold: true
                     text: fuelLevel
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    //anchors.horizontalCenter: parent.horizontalCenter
+                    Layout.alignment: Qt.AlignHCenter
                     anchors.top: fuelLevelIcon.bottom
                     anchors.topMargin: 12
                 }
@@ -57,7 +59,7 @@ Item {
                     source: "qrc:/resource/image/resource/image/carParameter/coolantTemperatureIcon.png"
                     width: 60
                     height: width / sourceSize.width * sourceSize.height
-                    anchors.left: parent.left
+                    Layout.alignment: Qt.AlignLeft
                 }
                 Text {
                     color: "#fff"
@@ -65,7 +67,7 @@ Item {
                     font.family: nesLowercaseFont.name
                     font.bold: true
                     text: coolantTemperature + "°C"
-                    anchors.left: parent.left
+                    Layout.alignment: Qt.AlignLeft
                     anchors.top: coolantTemperatureIcon.bottom
                     anchors.topMargin: 12
                 }
@@ -85,7 +87,7 @@ Item {
                     source: "qrc:/resource/image/resource/image/carParameter/turboPressureIcon.png"
                     width: 60
                     height: width / sourceSize.width * sourceSize.height
-                    anchors.right: parent.right
+                    Layout.alignment: Qt.AlignRight
                 }
                 Text {
                     color: "#fff"
@@ -93,7 +95,8 @@ Item {
                     font.family: nesLowercaseFont.name
                     font.bold: true
                     text: turboPressure + " bar"
-                    anchors.right: parent.right
+                    //anchors.right: parent.right
+                    Layout.alignment: Qt.AlignRight
                     anchors.top: turboPressureIcon.bottom
                     anchors.topMargin: 12
                }
@@ -113,7 +116,7 @@ Item {
                     source: "qrc:/resource/image/resource/image/carParameter/fuelLevelIcon.png"
                     width: 60
                     height: width / sourceSize.width * sourceSize.height
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    Layout.alignment: Qt.AlignHCenter
                 }
                 Text {
                     color: "#fff"
@@ -123,7 +126,7 @@ Item {
                     text: {
                         return batteryVoltage.toFixed(1) + "v"
                     }
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    Layout.alignment: Qt.AlignHCenter
                     anchors.top: batteryVoltageIcon.bottom
                     anchors.topMargin: 12
                }
