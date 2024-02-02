@@ -66,6 +66,8 @@ signals:
 
     void ambientLightRRSeatLevelChanged();
 
+    void settingsConfigLoaded();
+
 private:
     bool m_settingsIsOpen;
     bool m_settingsDiagnosysOpen;

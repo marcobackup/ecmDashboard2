@@ -58,6 +58,8 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
+    bool uiLoaded = false;
+
     // set qt object as property
     QQmlContext *context(engine.rootContext());
     context->setContextProperty("gaugeController", (QObject *) &gaugeController);
@@ -76,21 +78,20 @@ int main(int argc, char *argv[])
     // set brightness to max level
     brightnessHandler.setBrightness(255);
 
-    bool uiLoaded = false;
-
     // listen to incoming settings ecm status data
-    QObject::connect(&uartHandler, &UartHandler::settingsEcmStatusReceived, [&settingsController, &soundHandler, &url, &uiLoaded, &engine](UartHandler::settingsEcmStatusStruct data) {
+    QObject::connect(&uartHandler, &UartHandler::settingsEcmStatusReceived, [&settingsController, &soundHandler, &uiLoaded](UartHandler::settingsEcmStatusStruct data) {
         settingsController.setTheme(data.theme);
         if(!uiLoaded) {
             uiLoaded = true;
+            emit settingsController.settingsConfigLoaded();
 
             // start up chime effect
             soundHandler.playWarningChimeSoundEffect(2);
-            // start UI
-            engine.load(url);
         }
     });
 
+    // start UI
+    engine.load(url);
 
     return app.exec();
 }

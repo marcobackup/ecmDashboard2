@@ -17,7 +17,41 @@ Window {
         source: "qrc:/resource/font/resource/font/NES_Lowercase.ttf"
     }
 
-    Body {
-        id: body
+    Component {
+        id: loadingScreenComponent
+
+        Rectangle {
+            anchors.fill: parent
+            color: "#000000"
+
+            Image {
+                anchors.centerIn: parent
+                width: 180
+                height: width
+                source: "qrc:/resource/image/resource/image/fiatLogo.png"
+            }
+        }
+    }
+
+    Component {
+        id: bodyComponent
+
+        Body {
+            id: body
+        }
+    }
+
+    Loader {
+        id: appLoader
+        anchors.fill: parent
+        sourceComponent: loadingScreenComponent
+    }
+
+    Connections {
+        target: settingsController
+
+        function onSettingsConfigLoaded() {
+            appLoader.sourceComponent = bodyComponent
+        }
     }
 }

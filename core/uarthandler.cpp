@@ -66,10 +66,11 @@ void UartHandler::handleRxMessage(const QByteArray &data) {
 }
 
 void UartHandler::send(QByteArray payload) {
-    qDebug() << payload;
-    quint64 bytesWritten = serialPort->write(payload);
-    if (bytesWritten < 0)
-        qWarning() << "Error during bytes writing: " << serialPort->errorString();
+    if(serialPort->isOpen()) {
+        quint64 bytesWritten = serialPort->write(payload);
+        if (bytesWritten == -1)
+            qWarning() << "Error during bytes writing: " << serialPort->errorString();
+    }
 }
 
 void UartHandler::setupSerialPort() {
