@@ -11,11 +11,13 @@ SenderHandler::SenderHandler(UartHandler *uartHandler, Settings *settings, QObje
     connect(settings, &Settings::themeChanged, this, &SenderHandler::handleEcmStatus);
     connect(settings, &Settings::languageChanged, this, &SenderHandler::handleEcmStatus);
     connect(settings, &Settings::audioStatusChanged, this, &SenderHandler::handleEcmStatus);
+    connect(settings, &Settings::ambientLightLRSeatLevelChanged, this, &SenderHandler::handleEnvironmentLight);
+    connect(settings, &Settings::ambientLightRRSeatLevelChanged, this, &SenderHandler::handleEnvironmentLight);
 }
 
 void SenderHandler::handleEnvironmentLight()
 {
-    QString payload = QString("eeprom#environmentLight#write#%1,%d,%d").arg(
+    QString payload = QString("eeprom#environmentLight#write#%1,%2,%3\n").arg(
                 QString::number(settings->ambientLightSource()),
                 QString::number(settings->ambientLightLRSeatLevel()),
                 QString::number(settings->ambientLightRRSeatLevel()));

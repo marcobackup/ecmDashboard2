@@ -20,6 +20,11 @@ public:
         unsigned int language;
         unsigned int audioStatus;
     } settingsEcmStatusStruct;
+    typedef struct settingsAmbientLightStruct {
+        unsigned int ambientLightSource;
+        unsigned int ambientLightLRSeatLevel;
+        unsigned int ambientLightRRSeatLevel;
+    } settingsAmbientLightStruct;
 
     void send(QByteArray payload);
 
@@ -29,7 +34,7 @@ private slots:
 signals:
     void dataReceived(UartHandler::rxMessage data);
     void settingsEcmStatusReceived(UartHandler::settingsEcmStatusStruct settingsReceived);
-
+    void settingsAmbientLightReceived(UartHandler::settingsAmbientLightStruct ambientLightReceived);
 private:
     QSerialPort *serialPort;
 

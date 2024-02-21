@@ -78,6 +78,13 @@ int main(int argc, char *argv[])
     // set brightness to max level
     brightnessHandler.setBrightness(255);
 
+    // listen to incoming ambient lights data
+    QObject::connect(&uartHandler, &UartHandler::settingsAmbientLightReceived, [&settingsController](UartHandler::settingsAmbientLightStruct data) {
+        settingsController.setAmbientLightSource(data.ambientLightSource);
+        settingsController.setAmbientLightLRSeatLevel(data.ambientLightLRSeatLevel);
+        settingsController.setAmbientLightRRSeatLevel(data.ambientLightRRSeatLevel);
+    });
+
     // listen to incoming settings ecm status data
     QObject::connect(&uartHandler, &UartHandler::settingsEcmStatusReceived, [&settingsController, &soundHandler, &uiLoaded](UartHandler::settingsEcmStatusStruct data) {
         settingsController.setTheme(data.theme);
